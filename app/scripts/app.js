@@ -12,6 +12,7 @@ angular
   .module('angularAppApp', [
     'ngAnimate',
     'ngCookies',
+    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',

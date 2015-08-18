@@ -13,15 +13,11 @@ angular.module('angularAppApp')
     $scope.user = {};
 
     $scope.register = function () {
-      console.log($scope.user);
     };
 
     $scope.submit = function () {
       $scope.register();
     };
-
-
-
 
 
 

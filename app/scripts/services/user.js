@@ -9,5 +9,12 @@
  */
 angular.module('angularAppApp')
   .factory('user', function () {
-    return {};
+    return {
+      create: function(user) {
+        alert('aaa');
+        console.log(user);
+      },
+      reset: function() {
+      }
+    };
   });

@@ -17,6 +17,7 @@ angular.module('angularAppApp')
         scope.$on('$locationChangeSuccess', function() {
           if ($location.path() === scope.path) {
             element.addClass('active');
+
           } else {
             element.removeClass('active');
           }

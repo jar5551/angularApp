@@ -8,25 +8,17 @@
  * Controller of the angularAppApp
  */
 angular.module('angularAppApp')
-  .controller('Registraion2Ctrl', ['$scope', '$location', 'user', function ($scope, $location, user) {
+  .controller('Registration2Ctrl', ['$scope', '$location', 'user', 'mainService', function ($scope, $location, user, mainService) {
     $scope.user = user;
 
-    var isEmpty = function(obj) {
-      for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-          return false;
+    var step_validation = function (user) {
+      if(mainService.isVarEmpty(user.given_name) || mainService.isVarEmpty(user.last_name)) {
+        return false;
       }
       return true;
     }
 
-    var step_validation = function (user) {
-      if(user.given_name != '' && user.last_name != '' && typeof user.given_name !== "undefined" && typeof user.last_name !== "undefined") {
-        return true;
-      }
-      return false;
-    }
-
-    if(isEmpty($scope.user)) {
+    if(mainService.isObjectEmpty($scope.user) || mainService.isVarEmpty($scope.user.email) || mainService.isVarEmpty($scope.user.password)) {
       $location.path('/registration/step-1');
     }
 

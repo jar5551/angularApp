@@ -8,16 +8,8 @@
  * Controller of the angularAppApp
  */
 angular.module('angularAppApp')
-  .controller('Registraion3Ctrl', ['$scope', '$location', 'user', function ($scope, $location, user) {
+  .controller('Registration3Ctrl', ['$scope', '$location', 'user', 'mainService', function ($scope, $location, user, mainService) {
     $scope.user = user;
-
-    var isEmpty = function (obj) {
-      for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-          return false;
-      }
-      return true;
-    }
 
     var redirectToFirstStep = function () {
       $location.path('/registration/step-1');
@@ -34,7 +26,7 @@ angular.module('angularAppApp')
       return false;
     }
 
-    if(isEmpty($scope.user)) {
+    if(mainService.isObjectEmpty($scope.user)) {
       redirectToFirstStep();
     }
     else if($scope.user.given_name == '' || typeof $scope.user.given_name === 'undefined' || $scope.user.last_name == '' || typeof $scope.user.last_name === 'undefined') {
@@ -43,7 +35,7 @@ angular.module('angularAppApp')
 
     $scope.submit = function () {
       if(step_validation($scope.user)) {
-        $location.path('/registration/step-final');
+        user.create($scope.user);
       }
       else {
         console.log('nieporawne dane.');
